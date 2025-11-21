@@ -18,7 +18,7 @@ Em cadeias de bits, a Paridade é utilizada para identificar erros. Portanto, pa
   - '00100011' 
   - '00110000'
 
-Digamos que o tipo de PARIDADE do primeiro exemplo ('0100011') seja ÍMPAR, nesse caso, o bit de paridade, que sempre vem no início da cadeia de bits, será 0. Caso o tipo de PARIDADE fosse PAR, o bit de paridade seria 1 para que a quantidade de bits da cadeia de 8 bits fosse par.
+Digamos que o tipo de PARIDADE do primeiro exemplo ('00100011') seja ÍMPAR, nesse caso, o bit de paridade, que sempre vem no início da cadeia de bits, será 0. Caso o tipo de PARIDADE fosse PAR, o bit de paridade seria 1 para que a quantidade de bits da cadeia de 8 bits fosse par.
 
 No segundo exemplo ('00110000'), sendo a paridade PAR, o bit de paridade deve ser 0, do contrário, a paridade seria ÍMPAR e o bit de paridade no início cadeia seria '1', tornando-a: '10110000'.
 
