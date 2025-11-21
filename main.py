@@ -1,5 +1,5 @@
 # Autor: Gabriel Reis (https://github.com/gabrielreis12)
-# Conversor de Caracteres ASCII
+# Conversor de Caracteres ASCII com paridade a partir do valor de matrícula.
 
 import functions
 
@@ -12,27 +12,8 @@ while True:
     paridade_matricula = False
     VALORES_PARIDADE = ['PAR', 'ÍMPAR']
     string_paridade = None
-    def matricula_processada(matricula):
-        s_matricula = str(matricula)
-        if not isinstance(matricula, int):
-            raise TypeError(f"O argumento 'matricula' deve ser um número inteiro (int), mas foi recebido {type(matricula).__name__}")
-        if len(s_matricula) < 0: 
-            raise ValueError(f'A matrícula não pode ser negativa')
-        if len(s_matricula)!=9:
-            raise ValueError(f'A matrícula deve ter exatamente 9 dígitos')
-        print(f"Matrícula processada: {matricula}")
-        return matricula
 
-    def nome_processado(nome: str):
-        if not isinstance(nome, str):
-            raise TypeError(f"O argumento 'nome' deve ser uma string (str), mas foi recebido {type(nome).__name__}")
-        nome = nome.strip()
-        if (len(nome)<3):
-            raise ValueError(f'O nome deve ter pelo menos 3 caracteres')
-        print(f"Nome processado! Olá, {nome.upper()}")
-        return nome
-
-    # apresentação do programa no terminal e solicitação das entradas:
+    # Apresentação do programa no terminal e solicitação das entradas:
 
     print(TRACOS*'-')
     print('Codificação em ASCII - Disciplina ENGC26:')
@@ -44,14 +25,20 @@ while True:
     try:
         # 225601191
         # Gabriel Adriano de Jesus Reis
-        nome = input("DIGITE O SEU NOME: ").strip()
-        matricula_raw = input("DIGITE O NÚMERO DA SUA MATRÍCULA (ex.: 225601191): ").strip()
+        nome = input(f'DIGITE O SEU NOME: (se desejar para o programa digite "0") ').strip()
+        functions.break_function(nome,1) # passando 1 como parâmetro para poder rodar a função caso seja solicitado o "break" do sistema
+        if nome=='0': break
+        matricula_raw = input("DIGITE O NÚMERO DA SUA MATRÍCULA (ex.: 225xxyzyz. x,y e z são números inteiros quaisquer): ((se desejar para o programa digite '0') ").strip()
+        functions.break_function(nome,matricula_raw) #
+        if matricula_raw =='0': break
         matricula = int(matricula_raw)  # conversão dentro do try
 
-        matricula_processada(matricula)
-        nome = nome_processado(nome)
+        nome = functions.nome_processado(nome)
+        matricula = functions.matricula_processada(matricula)
 
-        # definir paridade pela matrícula
+        dados = functions.sensitive_info(nome,matricula)
+        
+        # definir paridade pelo valor da matrícula
         if (matricula % 2 == 0):
             paridade_matricula = True
             string_paridade = VALORES_PARIDADE[0]
@@ -62,10 +49,13 @@ while True:
         nome_tratado = "".join(nome.split())
         lista_de_strings = list(nome_tratado)
 
-        binarios_chr = teste.converter_nome_de_ascii_pra_binario(lista_de_strings)
-        resultado = teste.tipo_de_paridade(paridade_matricula, binarios_chr)
+        binarios_chr = functions.converter_nome_de_ascii_pra_binario(lista_de_strings)
+        resultado = functions.tipo_de_paridade(paridade_matricula, binarios_chr)
 
-        print(f'Seu nome em binário, no formato {string_paridade} é: ')
+        print(f'Olá, {dados["Nome"]}! Matrícula cadastrada: {dados["Matricula"]}.')
+        print()
+        print(f'Seu nome em binário, tem paridade {string_paridade} pelo valor da sua matrícula: ')
+        print()
         for i in range (len(lista_de_strings)):
             print(f'Para a letra {lista_de_strings[i]} com a paridade {string_paridade}, o código é: {resultado[i]}')
 
