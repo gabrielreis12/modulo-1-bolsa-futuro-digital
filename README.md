@@ -2,7 +2,7 @@
 
 - Resgatar o valor ASCII do caractere utilizando a função ord().
 - Converter o retorno da função ord() para sua representação binária de 7 bits (utilizando um laço for).
-- Calcular um bit de paridade com base na quantidade de bits com valor 1 na cadeia de 7 bits (utilizando iteração).
+- Calcular um bit de paridade com base na quantidade de bits com valor 1 na cadeia de 7 bits da ASCII (utilizando iteração).
 - Devolver uma saída com o nome da pessoa considerando os critérios de paridade escolhidos com base na tabela ASCII.
 
 # MOTIVAÇÃO
